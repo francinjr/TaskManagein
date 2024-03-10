@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace SistemaDeTarefas.Enums
+namespace TaskManagein.Enums
 {
     public enum TaskStatus
     {

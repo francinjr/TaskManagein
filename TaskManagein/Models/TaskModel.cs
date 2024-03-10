@@ -1,4 +1,4 @@
-﻿namespace SistemaDeTarefas.Models
+﻿namespace TaskManagein.Models
 {
     public class TaskModel
     {
@@ -7,5 +7,9 @@
         public string? Description { get; set; }
 
         public TaskStatus Status { get; set; }
+
+        public int? UserId { get; set; }
+
+        public virtual UserModel? UserModel { get; set; }
     }
 }
