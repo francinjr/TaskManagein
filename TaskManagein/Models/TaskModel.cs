@@ -10,6 +10,6 @@
 
         public int? UserId { get; set; }
 
-        public virtual UserModel? UserModel { get; set; }
+        public virtual UserModel? User { get; set; }
     }
 }
