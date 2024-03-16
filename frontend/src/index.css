@@ -1,0 +1,125 @@
+:root {
+  --neutral-100: #f0ece5;
+  --neutral-200: #b6bbc4;
+  --neutral-300: #31304d;
+  --neutral-400: #161a30;
+  --primary-blue: #5f78c2;
+
+  --success-color: #75ba24;
+  --warning-color: #f0e68c;
+  --error-color: #b22222;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  font-family: "Lexend", sans-serif;
+}
+
+body {
+  background-color: var(--neutral-400);
+  color: var(--neutral-100);
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  padding: 32px 24px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  color: var(--primary-blue);
+  text-align: center;
+}
+
+.inputGroup {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.input {
+  border: 2px solid var(--neutral-200);
+  height: 35px;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 0 16px;
+  background-color: var(--neutral-300);
+  color: var(--neutral-100);
+  width: 100%;
+  margin-top: 15px;
+}
+
+.input::placeholder {
+  color: var(--neutral-200);
+}
+
+.button {
+  border: 0;
+  height: 35px;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 0 16px;
+  margin-left: 8px;
+  border-radius: 5px;
+  background-color: var(--primary-blue);
+  color: var(--neutral-400);
+  transition: filter 180ms;
+  margin-top: 15px;
+  width: 7em;
+}
+
+.button:hover {
+  filter: brightness(0.75);
+}
+
+.task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 21px;
+  width: 100%;
+}
+
+.cancelButton {
+  border: 0;
+  height: 35px;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 0 16px;
+  margin-left: 8px;
+  border-radius: 5px;
+  background-color: var(--neutral-200);
+  color: var(--neutral-400);
+  transition: filter 180ms;
+  margin-top: 15px;
+  width: 7em;
+}
+
+.cancelButton:hover {
+  filter: brightness(0.75);
+}
+
+.toDo {
+  color: var(--neutral-200);
+}
+
+.inProgress {
+  color: var(--warning-color);
+}
+
+.concluded {
+  color: var(--success-color);
+}
