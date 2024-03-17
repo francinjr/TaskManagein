@@ -1,0 +1,21 @@
+.navBar {
+  position: fixed;
+  width: 9%;
+}
+
+.navBarButton {
+    height: 35px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 5px;
+    background-color: var(--neutral-300);
+    color: var(--neutral-400);
+    transition: filter 180ms;
+    width: 100%;
+    margin: 0px 0px 1px 0px;
+    border: 1px solid black;
+  }
+  
+  .navBarButton:hover {
+    filter: brightness(0.75);
+  }

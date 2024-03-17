@@ -1,12 +1,14 @@
 .taskContainer {
+    background-color: var(--neutral-300);
+    width: 100%;
+    border-radius: 5px;
+    width: 50%;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--neutral-300);
-    padding: 16px;
-    width: 100%;
-    border-radius: 5px;
     gap: 8px;
+    padding: 16px;
 }
 
 .taskTitle {
@@ -24,9 +26,4 @@
 
 .taskButton:hover {
     filter: brightness(0.75);
-}
-
-.taskCompleted {
-    text-decoration: line-through;
-    color: var(--neutral-200);
 }

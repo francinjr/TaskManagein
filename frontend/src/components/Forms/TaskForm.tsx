@@ -49,7 +49,7 @@ export function TaskForm(props: TaskFormProps) {
   }
   
     return (
-      <div>
+      <>
         {props.showModal && (
             <div className={styles.formContainer}>
               <span className={styles.formTitle}>Nova tarefa</span>
@@ -70,8 +70,7 @@ export function TaskForm(props: TaskFormProps) {
                     <button className="button" onClick={props.createTask}>Salvar</button>
                   </div>
             </div>
-
         )}
-      </div>
+      </>
     );
 }
