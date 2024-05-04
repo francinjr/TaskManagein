@@ -107,14 +107,6 @@ button {
   filter: brightness(0.75);
 }
 
-.task {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  margin-top: 21px;
-  width: 100%;
-}
 
 .cancelButton {
   border: 0;
@@ -145,4 +137,25 @@ button {
 
 .concluded {
   color: var(--success-color);
+}
+
+.taskContentSt {
+  background-color: red;
+}
+
+.taskActionContainer {
+  background: blue;
+  display: flex;
+  flex-direction: column;
+  width: 40px;
+  margin-left: 20px;
+}
+
+.marginActionItem {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: green;
 }
