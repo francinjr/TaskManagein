@@ -14,14 +14,14 @@ namespace TaskManagein.Repositories
             _dbContext = taskManageinDbContext;
         }
 
-        public async Task<List<TaskModel>> findAll()
+        public async Task<List<TaskModel>> FindAll()
         {
             return await _dbContext.Tasks
                 .Include(x => x.User)
                 .ToListAsync();
         }
 
-        public async Task<TaskModel> findById(int id)
+        public async Task<TaskModel> FindById(int id)
         {
             return await _dbContext.Tasks
                 .Include(x => x.User)
@@ -32,43 +32,36 @@ namespace TaskManagein.Repositories
         {
             await _dbContext.Tasks.AddAsync(task);
             await _dbContext.SaveChangesAsync();
-
             return task;
         }
 
-        public async Task<TaskModel> Update(TaskModel task, int id)
+        public async Task<TaskModel> Update(TaskModel task)
         {
-            TaskModel taskById = await findById(id);
-
-            if(taskById == null)
-            {
-                throw new Exception($"Tarefa com Id: {id} não foi encontrado");
-            }
-
-            taskById.Name = task.Name;
-            taskById.Description = task.Description;
-            taskById.Status = task.Status;
-            taskById.UserId = task.UserId;
-
-            _dbContext.Tasks.Update(taskById);
+            _dbContext.Tasks.Update(task);
             await _dbContext.SaveChangesAsync();
-
-            return taskById;
+            return task;
         }
 
         public async Task<bool> Delete(int id)
         {
-            TaskModel taskById = await findById(id);
+            var task = new TaskModel { Id = id };
 
-            if (taskById == null)
-            {
-                throw new Exception($"Tarefa com Id: {id} não foi encontrado");
-            }
+            _dbContext.Tasks.Attach(task);
+            _dbContext.Tasks.Remove(task);
 
-            _dbContext.Tasks.Remove(taskById);
             await _dbContext.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<bool> ExistsById(int id)
+        {
+            return await _dbContext.Tasks.AnyAsync(task => task.Id == id);
+        }
+
+        public async Task<bool> ExistsByName(string name)
+        {
+            return await _dbContext.Tasks.AnyAsync(task => task.Name == name);
         }
     }
 }

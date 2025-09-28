@@ -18,14 +18,14 @@ namespace SistemaDeTarefas.Controllers
         [HttpGet]
         public async Task<ActionResult<List<UserModel>>> findAll()
         {
-            List<UserModel> users = await _userRepository.findAll();
+            List<UserModel> users = await _userRepository.FindAll();
             return Ok(users);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<UserModel>> findById(int id)
         {
-            UserModel user = await _userRepository.findById(id);
+            UserModel user = await _userRepository.FindById(id);
             return Ok(user);
         }
 
@@ -40,7 +40,7 @@ namespace SistemaDeTarefas.Controllers
         public async Task<ActionResult<UserModel>> Update([FromBody] UserModel userModel, int id)
         {
             userModel.Id = id;
-            UserModel user = await _userRepository.Update(userModel, id);
+            UserModel user = await _userRepository.Update(userModel);
             return Ok(user);
         }
 

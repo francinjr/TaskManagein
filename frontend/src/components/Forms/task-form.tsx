@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css';
-import { TaskInterface } from '../../interfaces/TaskInterface';
+import { TaskInterface } from '../../interfaces/task-interface';
 
 interface TaskFormProps {
   taskFormData: TaskInterface;
@@ -32,7 +32,7 @@ export function TaskForm(props: TaskFormProps) {
         }));
     };
 
-    function convertStringToIntegerStatus(status: string) {
+    function convertStringToIntegerStatus(status: string): number  {
       switch(status) {
           case "A fazer":
           return 1;
@@ -74,3 +74,52 @@ export function TaskForm(props: TaskFormProps) {
       </>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+Parte inicial da Tabs Generica:
+"use client";
+
+import { useState } from "react";
+
+interface TabsProps {
+  tabs: string[];
+  color: string;
+}
+
+export function Tabs(props: TabsProps) {
+  const [activeTab, setActiveTab] = useState(props.tabs.length > 0 ? props.tabs[0] : "");
+
+  if (props.tabs.length === 0) {
+    return <div className="text-red-500">Nenhuma aba disponível</div>;
+  }
+
+  return (
+    <nav className="w-full h-[4vh] flex items-center justify-between px-8">
+      <div className="flex space-x-6 mr-auto text-lg">
+        {props.tabs.map((tab) => (
+          <button
+            key={tab}
+            className={`cursor-pointer ${activeTab === tab
+                ? `text-${props.color} font-bold`
+                : `hover:text-${props.color}`
+              }`}
+            onClick={() => setActiveTab(tab)}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+    </nav>
+  );
+};

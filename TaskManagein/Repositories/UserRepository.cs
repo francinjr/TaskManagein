@@ -14,12 +14,12 @@ namespace TaskManagein.Repositories
             _dbContext = taskManageinDbContext;
         }
 
-        public async Task<List<UserModel>> findAll()
+        public async Task<List<UserModel>> FindAll()
         {
             return await _dbContext.Users.ToListAsync();
         }
 
-        public async Task<UserModel> findById(int id)
+        public async Task<UserModel> FindById(int id)
         {
             return await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
         }
@@ -32,13 +32,13 @@ namespace TaskManagein.Repositories
             return user;
         }
 
-        public async Task<UserModel> Update(UserModel user, int id)
+        public async Task<UserModel> Update(UserModel user)
         {
-            UserModel userById = await findById(id);
+            UserModel userById = await FindById(user.Id);
 
             if(userById == null)
             {
-                throw new Exception($"Usuário com Id: {id} não foi encontrado");
+                throw new Exception($"Usuário com Id: {user.Id} não foi encontrado");
             }
 
             userById.Name = user.Name;
@@ -52,7 +52,7 @@ namespace TaskManagein.Repositories
 
         public async Task<bool> Delete(int id)
         {
-            UserModel userById = await findById(id);
+            UserModel userById = await FindById(id);
 
             if (userById == null)
             {

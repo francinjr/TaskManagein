@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { TaskInterface } from "../../interfaces/TaskInterface";
-import { NavBar } from "../../components/Navbar/NavBar";
+import { TaskInterface } from "../../interfaces/task-interface";
+import { NavBar } from "../../components/nav-bar/nav-bar";
 import styles from "./styles.module.css";
-import { Task } from "../../components/Task/Task";
-import { TaskForm } from "../../components/Forms/TaskForm";
-import TaskService from "../../services/TaskService";
-import { AxiosResponse } from "axios";
+import { TaskForm } from "../../components/forms/task-form";
+import TaskService from "../../services/task-service";
+import axios, { AxiosError, AxiosResponse } from "axios";
+import { Task } from "../../components/task/task";
+import { ApiResponseAlert } from "../../components/commons/api-response-alert/api-response-alert";
+import { ApiResponse } from "../../services/api-response";
 
 const defaultTaskFormData: TaskInterface = {
   name: "",
@@ -13,7 +15,10 @@ const defaultTaskFormData: TaskInterface = {
   status: 1,
   id: 0,
 };
-export const TaskView = () => {
+
+
+
+export const TaskPage = () => {
   useEffect(() => {
     console.log("Componente montado");
     const fetchData = async () => {
@@ -38,6 +43,12 @@ export const TaskView = () => {
   });
   const [showModal, setShowModal] = useState(false);
 
+  const [apiMessage, setApiMessage] = useState("");
+  const [apiMessadeDuration, setApiMessageDuration] = useState(0);
+  const [operationStatus, setOperationStatus] = useState(true);
+
+  const [showApiResponseAlert, setShowApiResponseAlert] = useState(false);
+
   function handleCompleteTask(id: number) {
     const taskIndex = tasks.findIndex((item) => item.id === id);
 
@@ -56,7 +67,7 @@ export const TaskView = () => {
     setTasks(newTasks);
   }
 
-  function createTask(): void {
+  /*function createTask(): void {
     // chamar a api
 
     const newTask: TaskInterface = {
@@ -68,10 +79,68 @@ export const TaskView = () => {
 
     setShowModal(false);
     setTaskFormData({ ...defaultTaskFormData });
+  }*/
+
+  const createTask = async () => {
+    let response: AxiosResponse<ApiResponse<TaskInterface>> | null = null;
+    let error: any = null;
+
+    try {
+      response = await TaskService.create(taskFormData);
+
+      setTasks([...tasks, response.data.data]);
+      closeModal();
+
+    } catch (err) {
+      error = err;
+      console.error("Ocorreu um erro:", error);
+    } finally {
+      showOperationResult(response, error);
+    }
   }
+
+
+  const showOperationResult = (response: AxiosResponse<ApiResponse<TaskInterface>> | null, error: any) => {
+    if(response != null) {
+      setOperationStatus(true);
+      setApiMessage(response.data.message);
+    } else {
+      setOperationStatus(false);
+      setApiMessage(error.data.message);
+    }
+    setShowApiResponseAlert(true);
+    // Agora tenho que mudar a resposne da api
+  }
+
+
+  const deleteTask = async (taskId: number) => {
+    try {
+      await TaskService.delete(taskId);
+
+      setTasks(tasks.filter(task => task.id !== taskId));
+      closeModal();
+
+      setOperationStatus(true);
+      setApiMessage("Tarefa deletada com sucesso!");
+      setShowApiResponseAlert(true);
+
+    } catch (error) {
+      setOperationStatus(false);
+      setApiMessage("Ocorreu um erro ao deletar a tarefa!");
+      setShowApiResponseAlert(false);
+
+      console.error("Ocorreu um erro:", error);
+    }
+  }
+
+
 
   function openModal() {
     setShowModal(true);
+  }
+
+  function closeModal() {
+    setShowModal(false);
   }
 
   function showData() {
@@ -115,11 +184,19 @@ export const TaskView = () => {
                       key={item.id}
                       tasks={item}
                       handleCompleteTask={handleCompleteTask}
+                      deleteTask={deleteTask}
                     />
                   ))}
 
                 {!tasks.length && <p>Não há nenhuma tarefa</p>}
               </div>
+              <ApiResponseAlert
+                operationStatus={operationStatus}
+                message={apiMessage}
+                messageDuration={5000}
+                showApiResponseAlert={showApiResponseAlert}
+                setShowApiResponseAlert={setShowApiResponseAlert}
+              />
             </main>
           </div>
           <TaskForm

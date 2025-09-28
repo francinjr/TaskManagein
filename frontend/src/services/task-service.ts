@@ -1,4 +1,5 @@
-import { TaskInterface } from "../interfaces/TaskInterface";
+import { TaskInterface } from "../interfaces/task-interface";
+import { ApiResponse } from "./api-response";
 import { apiClient } from "./config";
 import { AxiosResponse } from 'axios';
 
@@ -11,7 +12,7 @@ class TaskService {
     return apiClient.get(`api/Task/${id}`);
   }
 
-  create(data: TaskInterface): Promise<AxiosResponse<TaskInterface>> {
+  create(data: TaskInterface): Promise<AxiosResponse<ApiResponse<TaskInterface>>> {
     return apiClient.post("api/Task", data);
   }
 

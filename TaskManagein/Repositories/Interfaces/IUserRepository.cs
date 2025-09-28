@@ -2,15 +2,15 @@
 
 namespace TaskManagein.Repositories.Interfaces
 {
-    public interface ITaskRepository
+    public interface IUserRepository
     {
-        Task<List<TaskModel>> findAll();
+        Task<List<UserModel>> FindAll();
 
-        Task<TaskModel> findById(int id);
+        Task<UserModel> FindById(int id);
 
-        Task<TaskModel> Add(TaskModel task);
+        Task<UserModel> Add(UserModel user);
 
-        Task<TaskModel> Update(TaskModel task, int id);
+        Task<UserModel> Update(UserModel user);
 
         Task<bool> Delete(int id);
 

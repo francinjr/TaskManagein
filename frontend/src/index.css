@@ -8,6 +8,8 @@
   --success-color: #75ba24;
   --warning-color: #f0e68c;
   --error-color: #b22222;
+
+  --border-radius: 5px;
 }
 
 * {

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\franc\\OneDrive\\Documentos\\TaskManagein\\TaskManagein\\TaskManagein.csproj": {}
+    "C:\\ProjetosProgramacao\\TaskManagein\\TaskManagein\\TaskManagein.csproj": {}
   },
   "projects": {
-    "C:\\Users\\franc\\OneDrive\\Documentos\\TaskManagein\\TaskManagein\\TaskManagein.csproj": {
+    "C:\\ProjetosProgramacao\\TaskManagein\\TaskManagein\\TaskManagein.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\franc\\OneDrive\\Documentos\\TaskManagein\\TaskManagein\\TaskManagein.csproj",
+        "projectUniqueName": "C:\\ProjetosProgramacao\\TaskManagein\\TaskManagein\\TaskManagein.csproj",
         "projectName": "TaskManagein",
-        "projectPath": "C:\\Users\\franc\\OneDrive\\Documentos\\TaskManagein\\TaskManagein\\TaskManagein.csproj",
+        "projectPath": "C:\\ProjetosProgramacao\\TaskManagein\\TaskManagein\\TaskManagein.csproj",
         "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\franc\\OneDrive\\Documentos\\TaskManagein\\TaskManagein\\obj\\",
+        "outputPath": "C:\\ProjetosProgramacao\\TaskManagein\\TaskManagein\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\franc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -73,6 +73,10 @@
               "target": "Package",
               "version": "[8.0.2, )"
             },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
@@ -97,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,9 +1,10 @@
-import { TaskInterface } from "../../interfaces/TaskInterface";
+import { TaskInterface } from "../../interfaces/task-interface";
 import styles from "./styles.module.css";
 
 interface TaskProps {
   tasks: TaskInterface;
   handleCompleteTask: (id: number) => void;
+  deleteTask: (id: number) => void;
 }
 
 export function Task(props: TaskProps) {
@@ -56,7 +57,7 @@ export function Task(props: TaskProps) {
         </div>
         
         <div className="marginActionItem">
-          <img src="/removeIcon.svg" alt="Icone editar" width="40" height="40"/>
+          <img src="/removeIcon.svg" alt="Icone editar" width="40" height="40" onClick={() => props.deleteTask(props.tasks.id)}/>
         </div>
       </div>
     </div>

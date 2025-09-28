@@ -1,0 +1,12 @@
+.alertContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--success-color);
+    color: var(--neutral-100);
+    width: 80%;
+    height: 3rem;
+    font-size: 15px;
+    border-radius: var(--border-radius);
+    padding: 5px;
+}

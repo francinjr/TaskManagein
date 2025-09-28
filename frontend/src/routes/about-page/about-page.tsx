@@ -1,6 +1,7 @@
-import { NavBar } from "../../components/Navbar/NavBar"
+import { NavBar } from "../../components/nav-bar/nav-bar"
 
-export const AboutView = () => {
+
+export const AboutPage = () => {
     return (
         <>
         <div className="mainContainer">
